@@ -15,20 +15,27 @@ void add_nbo(uint8_t buf1[], uint8_t buf2[]) {
 	printf("%d(0x%x) + %d(0x%x) = %d(0x%x)\n", n1, n1, n2, n2, add, add);
 }
 
+void print_title() {
+	char track[] = "취약점";
+	char name[] = "조창연";
+	printf("[bob10][%s]add-nbo[%s]\n", track, name);
+}
+
 int main(int argc, char *argv[]){
     FILE *fp1, *fp2;
     uint8_t buf1[32], buf2[32];
-    
+	
     fp1 = fopen(argv[1], "rb");
 	fp2 = fopen(argv[2], "rb");
 
     fread(buf1, 32, 1, fp1);
     fread(buf2, 32, 1, fp2);
-
+	print_title();
 	add_nbo(buf1, buf2);
-
 	fclose(fp1);
 	fclose(fp2);
+
+	
 
     return 0;
 }
